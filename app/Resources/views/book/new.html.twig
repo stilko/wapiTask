@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+
+    <i>  <h2>Book creation</h2></i>
+        <div class="col-md-4 col-md-offset-4">
+
+    {{ form_start(form) }}
+            <i>{{  form_widget(form) }}</i>
+            <div style="margin-top:10px" class="form-group">
+            <!-- Button -->
+
+            <div class="col-sm-12 controls">
+            <button id="btn-login" class="btn btn-success" type="submit">Create  </button>
+
+            </div>
+            </div>
+    {{ form_end(form) }}
+
+        </div>
+    </center>
+{% endblock %}

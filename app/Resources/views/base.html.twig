@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('css/background.css') }}" />
+        {% block stylesheets %} <title>Wapi Bulgaria Library</title>
+
+        <!-- Bootstrap Core CSS -->
+        <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+
+        <!-- Custom CSS -->
+        <link href="{{ asset('css/business-casual.css') }}" rel="stylesheet">
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,400,600,700,100italic,300italic,400italic,600italic,700italic" rel="stylesheet" type="text/css">
+
+
+    </head>
+    <div class="container" style="background-image:url('{{ asset('images/House20k_2048x2048.jpg') }}')" > ,
+
+    <link rel="stylesheet" href="{{ asset('css/background.css') }}" />
+
+    <div class="brand">Wapi Bulgaria Library</div>
+
+        <!-- Navigation -->
+    <nav class="navbar navbar-default" role="navigation">
+
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {% if user and user.getRoles != null %}
+                    {% if user.getRoles[0] == 'USER' or user.getRoles[0] == 'ADMIN' %}
+                        <li>
+                            <a href="{{ path('all_books') }}">All books</a>
+                        </li>
+                    {% endif %}
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') != true %}
+                        <li>
+                            <a href="{{ path('register_process') }}">Register!</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('our_login') }}">Login</a>
+                        </li>
+                    {% endif %}
+                    {% if user and user.getRoles != null %}
+                    {% if user.getRoles[0] == 'ADMIN' %}
+                        <li>
+                            <a href="{{ path('new_book') }}">Add Book</a>
+                        </li>
+                    {% endif %}
+                    {% endif %}
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <li>
+                            <a href="{{ path('logout') }}">Logout</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+            <hr>
+            <!-- /.navbar-collapse -->
+        <!-- /.container -->
+
+    <body background="{{ asset('images/House20k_2048x2048.jpg') }}">
+
+    </body>
+    <center>
+    {% if app.session.flashBag.has('success') %}
+        <ul style="color: green">
+            {% for message in app.session.flashBag.get('success') %}
+                <h2>      <li>{{ message }}</li></h2>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    {% if app.session.flashBag.has('error') %}
+        <ul style="color: red">
+            {% for message in app.session.flashBag.get('error') %}
+                <h2>      <li>{{ message }}</li></h2>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+
+    {% endblock %}
+
+
+
+    {% block body %}
+
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </center>
+
+</html>
